@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox spacing="16"
+      styleClass="dash-root"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.javafx.controller.TransactionController">
+    <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+    <Label text="Transações" styleClass="page-title"/>
+
+    <!-- ─── Filter Bar ─── -->
+    <HBox spacing="12" alignment="CENTER_LEFT" styleClass="card">
+        <Label text="Buscar:"/>
+        <TextField fx:id="searchField" promptText="Descrição..." prefWidth="200"/>
+
+        <Label text="Tipo:"/>
+        <ComboBox fx:id="filterType" prefWidth="120"/>
+
+        <Label text="Categoria:"/>
+        <ComboBox fx:id="filterCategory" prefWidth="160"/>
+    </HBox>
+
+    <!-- ─── Table ─── -->
+    <VBox styleClass="card" VBox.vgrow="ALWAYS" spacing="8">
+        <Label text="Lista de Transações" styleClass="section-title"/>
+        <Separator/>
+
+        <TableView fx:id="tableView" VBox.vgrow="ALWAYS" minHeight="300">
+            <columns>
+                <TableColumn fx:id="colId"       text="ID"        prefWidth="50"/>
+                <TableColumn fx:id="colDesc"     text="Descrição" prefWidth="200"/>
+                <TableColumn fx:id="colCategory" text="Categoria" prefWidth="140"/>
+                <TableColumn fx:id="colAmount"   text="Valor"     prefWidth="110"/>
+                <TableColumn fx:id="colType"     text="Tipo"      prefWidth="100"/>
+                <TableColumn fx:id="colDate"     text="Data"      prefWidth="100"/>
+                <TableColumn fx:id="colActions"  text=""          prefWidth="80"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+    <!-- ─── Add Transaction Form ─── -->
+    <VBox styleClass="card" spacing="12">
+        <Label text="Nova Transação" styleClass="section-title"/>
+        <Separator/>
+
+        <GridPane hgap="12" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="30"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="15"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="20"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="15"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="20"/>
+            </columnConstraints>
+
+            <Label text="Descrição" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label text="Valor (R$)" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="Categoria" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <Label text="Tipo" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+            <Label text="Data" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+
+            <TextField fx:id="descField" promptText="Ex: Mercado..."
+                       GridPane.columnIndex="0" GridPane.rowIndex="1" maxWidth="Infinity"/>
+            <TextField fx:id="amountField" promptText="0,00"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity"/>
+            <ComboBox fx:id="categoryCombo"
+                      GridPane.columnIndex="2" GridPane.rowIndex="1" maxWidth="Infinity"/>
+            <ComboBox fx:id="typeCombo"
+                      GridPane.columnIndex="3" GridPane.rowIndex="1" maxWidth="Infinity"/>
+            <DatePicker fx:id="datePicker"
+                        GridPane.columnIndex="4" GridPane.rowIndex="1" maxWidth="Infinity"/>
+        </GridPane>
+
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Button text="Adicionar Transação"
+                    styleClass="btn-primary"
+                    onAction="#onAddTransaction"/>
+            <Label fx:id="formFeedback" text=""/>
+        </HBox>
+    </VBox>
+
+</VBox>

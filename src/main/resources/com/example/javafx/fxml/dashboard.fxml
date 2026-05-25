@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.*?>
+
+<ScrollPane fitToWidth="true"
+            styleClass="dash-scroll"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.javafx.controller.DashboardController">
+
+    <VBox spacing="20" styleClass="dash-root">
+        <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+        <!-- ─── Page Title ─── -->
+        <Label text="Dashboard" styleClass="page-title"/>
+
+        <!-- ─── Summary Cards ─── -->
+        <GridPane hgap="16" vgap="0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="25"/>
+            </columnConstraints>
+
+            <!-- Saldo -->
+            <VBox GridPane.columnIndex="0" styleClass="card card-blue" spacing="4">
+                <Label text="SALDO ATUAL" styleClass="card-title"/>
+                <Label fx:id="saldoLabel"   text="R$ 0,00"  styleClass="card-value"/>
+                <Label fx:id="saldoTrend"   text="..."       styleClass="card-trend"/>
+            </VBox>
+
+            <!-- Receitas -->
+            <VBox GridPane.columnIndex="1" styleClass="card card-green" spacing="4">
+                <Label text="RECEITAS" styleClass="card-title"/>
+                <Label fx:id="receitaLabel" text="R$ 0,00" styleClass="card-value"/>
+                <Label text="Este período" styleClass="card-trend"/>
+            </VBox>
+
+            <!-- Despesas -->
+            <VBox GridPane.columnIndex="2" styleClass="card card-red" spacing="4">
+                <Label text="DESPESAS" styleClass="card-title"/>
+                <Label fx:id="despesaLabel" text="R$ 0,00" styleClass="card-value"/>
+                <Label text="Este período" styleClass="card-trend"/>
+            </VBox>
+
+            <!-- Taxa de economia -->
+            <VBox GridPane.columnIndex="3" styleClass="card card-purple" spacing="4">
+                <Label text="TAXA DE ECONOMIA" styleClass="card-title"/>
+                <Label fx:id="economiasLabel" text="0%" styleClass="card-value"/>
+                <Label text="Receita poupada" styleClass="card-trend"/>
+            </VBox>
+        </GridPane>
+
+        <!-- ─── Charts Row ─── -->
+        <HBox spacing="16">
+            <!-- Pie Chart -->
+            <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+                <PieChart fx:id="pieChart"
+                          prefHeight="280"
+                          animated="true"
+                          legendSide="BOTTOM"/>
+            </VBox>
+
+            <!-- Bar Chart -->
+            <VBox styleClass="card" spacing="8" HBox.hgrow="ALWAYS">
+                <BarChart fx:id="barChart" prefHeight="280" animated="true">
+                    <xAxis>
+                        <CategoryAxis fx:id="barCategoryAxis" label="Mês"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis fx:id="barNumberAxis" label="R$"/>
+                    </yAxis>
+                </BarChart>
+            </VBox>
+        </HBox>
+
+        <!-- ─── Recent Transactions ─── -->
+        <VBox styleClass="card" spacing="12">
+            <Label text="Transações Recentes" styleClass="section-title"/>
+            <Separator/>
+            <VBox fx:id="recentList" spacing="0"/>
+        </VBox>
+
+    </VBox>
+</ScrollPane>
