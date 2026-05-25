@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.javafx.controller.MainController"
+            fx:id="root"
+            styleClass="root-pane">
+
+    <!-- ═══ LEFT SIDEBAR ═══ -->
+    <left>
+        <VBox styleClass="sidebar" spacing="0">
+
+            <!-- App Logo / Brand -->
+            <VBox styleClass="brand-box" alignment="CENTER">
+                <Label text="FinanceFlow" styleClass="brand-title"/>
+                <Label text="Finanças Pessoais" styleClass="brand-sub"/>
+            </VBox>
+
+            <Separator styleClass="sidebar-sep"/>
+
+            <!-- Navigation Buttons -->
+            <VBox spacing="4" VBox.vgrow="ALWAYS" style="-fx-padding: 12 8 0 8;">
+                <Button fx:id="btnDashboard"
+                        text="  Dashboard"
+                        maxWidth="Infinity"
+                        styleClass="nav-btn, nav-active"
+                        onAction="#showDashboard"/>
+
+                <Button fx:id="btnTransactions"
+                        text="  Transações"
+                        maxWidth="Infinity"
+                        styleClass="nav-btn"
+                        onAction="#showTransactions"/>
+            </VBox>
+
+            <!-- Footer -->
+            <Label text="v1.0.0 — Java 21 + JavaFX 21"
+                   styleClass="sidebar-footer"
+                   alignment="CENTER"
+                   maxWidth="Infinity"/>
+        </VBox>
+    </left>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area"/>
+    </center>
+</BorderPane>
